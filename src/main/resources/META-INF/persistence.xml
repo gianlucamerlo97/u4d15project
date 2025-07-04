@@ -2,20 +2,32 @@
 <persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.2"
              xmlns="http://xmlns.jcp.org/xml/ns/persistence"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-    <persistence-unit name="U4-W3-D2">
-        <class>gianlucamerlo.entities.Evento</class>
-        <class>gianlucamerlo.entities.Location</class>
-        <class>gianlucamerlo.entities.Persona</class>
-        <class>gianlucamerlo.entities.Partecipazione</class>
-        <class>gianlucamerlo.entities.PartitaDiCalcio</class>
+
+    <persistence-unit name="catalogo_bibliografico" transaction-type="RESOURCE_LOCAL">
+
+        <!-- Elenco delle entità JPA -->
+        <class>gianlucamerlo.entities.Catalogo</class>
+        <class>gianlucamerlo.entities.Libro</class>
+        <class>gianlucamerlo.entities.Rivista</class>
+        <class>gianlucamerlo.entities.Utente</class>
+        <class>gianlucamerlo.entities.Prestito</class>
+
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/gestioneeventi"/>
-
-            <property name="javax.persistence.jdbc.user" value="postgres"/>
-            <property name="javax.persistence.jdbc.password" value="1234"/>
+            <!-- Connessione a PostgreSQL -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/catalogo"/>
+            <property name="javax.persistence.jdbc.user" value="postgres"/> <!-- o il tuo username -->
+            <property name="javax.persistence.jdbc.password" value="1234"/>
 
+            <!-- Auto-generazione schema -->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+
+            <!-- Dialetto PostgreSQL -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+
+            <!-- Log SQL nel terminale -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

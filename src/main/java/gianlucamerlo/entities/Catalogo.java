@@ -2,21 +2,23 @@ package gianlucamerlo.entities;
 
 import jakarta.persistence.*;
 
+import java.lang.reflect.Type;
 import java.util.UUID;
 
 @Entity
-@Table(name = "catalogo")
+@Inheritance(InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="")
 public abstract class Catalogo {
     @Id
     @GeneratedValue
-    @Column(name = "codice_ISBN")
-    private UUID codiceISBN;
-    @Column(name = "titolo")
-    private String titolo;
-    @Column(name = "anno_di_pubblicazione")
-    private int annoDiPubblicazione;
-    @Column(name = "numero_pagine")
-    private int numeroPagine;
+
+    protected long codiceISBN;
+
+    protected String titolo;
+
+    protected int annoDiPubblicazione;
+
+    protected int numeroPagine;
 
     public Catalogo(){}
 
@@ -27,7 +29,7 @@ public abstract class Catalogo {
         this.numeroPagine = numeroPagine;
     }
 
-    public UUID getCodiceISBN() {
+    public long getCodiceISBN() {
         return codiceISBN;
     }
 
