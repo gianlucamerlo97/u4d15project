@@ -6,8 +6,8 @@ import java.lang.reflect.Type;
 import java.util.UUID;
 
 @Entity
-@Inheritance(InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="tipo", discriminatorType = DiscriminatorType.STRING)
 public abstract class Catalogo {
     @Id
     @GeneratedValue

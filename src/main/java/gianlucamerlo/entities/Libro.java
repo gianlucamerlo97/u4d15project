@@ -7,15 +7,18 @@ import org.hibernate.annotations.AnyDiscriminatorImplicitValues;
 import java.util.UUID;
 
 @Entity
-@Table(name = "libri")
+
 public class Libro extends Catalogo{
     private String autore;
+    @Enumerated
     private Genere genere;
+
     //Costruttori
-    public Libro(Genere genere, String autore,int annoDiPubblicazione,String titolo, int numeroDiPagine) {
+    public Libro( String autore,int annoDiPubblicazione,String titolo, int numeroDiPagine,Genere genere) {
         super(annoDiPubblicazione,titolo,numeroDiPagine);
-        this.genere = genere;
+
         this.autore = autore;
+        this.genere=genere;
     }
     public Libro(){}
     //getters and setters
@@ -35,5 +38,15 @@ public class Libro extends Catalogo{
         this.genere = genere;
     }
 
-
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "titolo='" + titolo + '\'' +
+                ", autore='" + autore + '\'' +
+                ", genere=" + genere +
+                ", codiceISBN=" + codiceISBN +
+                ", numeroPagine=" + numeroPagine +
+                ", annoDiPubblicazione=" + annoDiPubblicazione +
+                "} " + super.toString();
+    }
 }

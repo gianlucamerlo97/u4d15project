@@ -12,6 +12,7 @@ public class Prestito {
     @JoinColumn(name = "id_utente")
     private Utente utente;
     @ManyToOne
+    @JoinColumn(name = "id_elemento_prestato")
     private Catalogo elementoPrestato;
     private LocalDate dataInizioPrestito;
     private LocalDate dataRestituzioneEffettiva;

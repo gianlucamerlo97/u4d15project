@@ -1,5 +1,6 @@
 package gianlucamerlo.DAO;
 
+import gianlucamerlo.entities.Catalogo;
 import gianlucamerlo.entities.Prestito;
 import gianlucamerlo.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
@@ -20,10 +21,14 @@ public class PrestitoDAO {
         System.out.println("Prestito aggiunto con successo!");
     }
 
-    public Prestito findBynumeroTessera(numeroTessera) {
-        Prestito found = entityManager.find(Prestito.class, prestitoId);
-        if (found == null) throw new NotFoundException(prestitoId);
-        return found;
+    public void findBynumeroTessera(long numeroTessera) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        String query = "SELECT p FROM Prestito p WHERE p.utente.numeroTessera = :numeroTessera";
+        Prestito prestito = entityManager.createQuery(query, Prestito.class)
+                .setParameter("numeroTessera", numeroTessera)
+                .getSingleResult();
+        transaction.commit();
     }
 
 
