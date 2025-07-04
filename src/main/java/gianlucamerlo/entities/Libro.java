@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class Libro extends Catalogo{
     private String autore;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Genere genere;
 
     //Costruttori

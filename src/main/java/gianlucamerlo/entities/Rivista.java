@@ -2,11 +2,14 @@ package gianlucamerlo.entities;
 
 import gianlucamerlo.enums.Periodicità;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 import java.time.Period;
 
 @Entity
 public class Rivista extends Catalogo{
+    @Enumerated(EnumType.STRING)
     private Periodicità periodicità;
 
     public Rivista(){}
@@ -16,4 +19,11 @@ public class Rivista extends Catalogo{
         this.periodicità=periodicità;
     }
 
+    public Periodicità getPeriodicità() {
+        return periodicità;
+    }
+
+    public void setPeriodicità(Periodicità periodicità) {
+        this.periodicità = periodicità;
+    }
 }
